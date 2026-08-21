@@ -5,7 +5,8 @@ import { Text } from "react-native";
 import { TouchableOpacity } from "react-native";
 
 export default function LikeButton() {
-    const [liked, setLiked] = useState(false)
+    const [liked, setLiked] = useState(false);
+    const [guardado, setGuardado] = useState(false);
 
     return (
         <View style={styles.container}>
@@ -17,6 +18,13 @@ export default function LikeButton() {
                 <Text style={styles.icon}>{liked ? '❤️' : '🤍'}</Text>
                 <Text style={[styles.label, liked && styles.labelActive]}>
                     {liked ? "Te gusta" : "Me gusta"}
+                </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+            onPress={() => setGuardado((v) => !v)} style={[styles.button, guardado && styles.buttonActive_save]}> 
+                <Text style={styles.icon}>{guardado ? '🏷️' : "💾" }</Text>
+                <Text style={[styles.label, guardado && styles.labelActive_save]}>
+                    {guardado ? "Guardado :D" : "Guardar"}
                 </Text>
             </TouchableOpacity>
         </View>
@@ -61,6 +69,11 @@ const styles = StyleSheet.create({
         borderColor: '#DC2626' 
     },
 
+    buttonActive_save: { 
+        backgroundColor: '#537fcf', 
+        borderColor: '#143aa1' 
+    },
+
     icon: { 
         fontSize: 18 
     },
@@ -73,5 +86,9 @@ const styles = StyleSheet.create({
 
     labelActive: { 
         color: '#DC2626' 
+    },
+
+    labelActive_save: { 
+        color: '#a5d3f8' 
     },
 });
